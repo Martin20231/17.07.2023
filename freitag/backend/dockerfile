@@ -1,0 +1,20 @@
+# Verwenden des Node.js-Images als Basis
+FROM node:14
+
+# Setzen des Arbeitsverzeichnisses
+WORKDIR /app
+
+# Kopieren der package.json und package-lock.json in das Arbeitsverzeichnis
+COPY package*.json ./
+
+# Installation der Abhängigkeiten
+RUN npm install
+
+# Kopieren des gesamten Backend-Codes in das Arbeitsverzeichnis
+COPY . .
+
+# Öffnen des Ports, auf dem das Backend laufen wird
+EXPOSE 3000
+
+# Starten des Backend-Servers
+CMD ["npm", "start"]
